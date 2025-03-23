@@ -19,7 +19,7 @@ Install the files to your machine, open the outermost file in a terminal and run
 ## Usage
 Start the program using "npm start", then log in using one of the premade user accounts. You can also post a new user account to the application if you prefer. Once logged in, you can access and update the Kanban board as necessary. And when you are done you can log out by clicking the Logout button.
 
-![Login page example](./assets/login.png)
+![Login page example](./assets/Login.png)
 You will be prompted to log in through the window above.  
 
 ![Board page example](./assets/board.png)
