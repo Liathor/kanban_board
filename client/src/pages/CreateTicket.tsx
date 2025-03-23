@@ -4,6 +4,7 @@ import { createTicket } from '../api/ticketAPI';
 import { TicketData } from '../interfaces/TicketData';
 import { UserData } from '../interfaces/UserData';
 import { retrieveUsers } from '../api/userAPI';
+import Auth from '../utils/auth';
 
 const CreateTicket = () => {
   const [newTicket, setNewTicket] = useState<TicketData | undefined>(
@@ -18,6 +19,14 @@ const CreateTicket = () => {
   );
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = Auth.getToken();
+
+    if (!token || Auth.isTokenExpired(token)) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const [users, setUsers] = useState<UserData[] | undefined>([]);
 

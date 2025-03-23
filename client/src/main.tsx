@@ -8,6 +8,8 @@ import ErrorPage from './pages/ErrorPage.tsx';
 import EditTicket from './pages/EditTicket.tsx';
 import CreateTicket from './pages/CreateTicket.tsx';
 import Login from './pages/Login.tsx';
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
+
 
 const router = createBrowserRouter([
   {
@@ -21,11 +23,13 @@ const router = createBrowserRouter([
       }, 
       {
         path: '/edit',
-        element: <EditTicket />
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <EditTicket /> }],
       },
       {
         path: '/create',
-        element: <CreateTicket />
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <CreateTicket /> }],
       },
       {
         path: '/login',

@@ -1,6 +1,6 @@
 import { useEffect, useState, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import { retrieveTickets, deleteTicket } from '../api/ticketAPI';
 import ErrorPage from './ErrorPage';
 import Swimlane from '../components/Swimlane';
@@ -12,6 +12,7 @@ import auth from '../utils/auth';
 const boardStates = ['Todo', 'In Progress', 'Done'];
 
 const Board = () => {
+  const navigate = useNavigate();
   const [tickets, setTickets] = useState<TicketData[]>([]);
   const [error, setError] = useState(false);
   const [loginCheck, setLoginCheck] = useState(false);
@@ -47,7 +48,11 @@ const Board = () => {
   }, []);
 
   useEffect(() => {
-    if(loginCheck) {
+    const token = auth.getToken();
+    if (!token || auth.isTokenExpired(token)) {
+      // Redirect to login if the token is not present or expired
+      navigate('/login');
+    } else if (loginCheck) {
       fetchTickets();
     }
   }, [loginCheck]);

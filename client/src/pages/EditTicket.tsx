@@ -1,6 +1,6 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import Auth from '../utils/auth';
 import { retrieveTicket, updateTicket } from '../api/ticketAPI';
 import { TicketData } from '../interfaces/TicketData';
 
@@ -18,6 +18,14 @@ const EditTicket = () => {
       console.error('Failed to retrieve ticket:', err);
     }
   }
+
+  useEffect(() => {
+    const token = Auth.getToken();
+
+    if (!token || Auth.isTokenExpired(token)) {
+      navigate('/login');
+    }
+  }, [navigate]);  
 
   useEffect(() => {
     fetchTicket(state);
