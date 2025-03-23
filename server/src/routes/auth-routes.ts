@@ -12,7 +12,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!userData) {
       // the error message shouldn't specify if the login failed because of wrong email or password
-      res.status(404).json({ message: 'Login failed. Please try again!' });
+      res.status(401).json({ message: 'Invalid username or password' });
       return;
     }
     const validPassword = await bcrypt.compare(
@@ -22,7 +22,7 @@ export const login = async (req: Request, res: Response) => {
     // console.log("Valid password= " + validPassword);
   
     if (!validPassword) {
-      res.status(400).json({ message: 'Login failed. Please try again!' });
+      res.status(401).json({ message: 'Invalid username or password' });
       return;
     }
 
