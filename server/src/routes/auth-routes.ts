@@ -10,33 +10,31 @@ export const login = async (req: Request, res: Response) => {
 
   try {
 
-  if (!userData) {
-    // the error message shouldn't specify if the login failed because of wrong email or password
-    res.status(404).json({ message: 'Login failed. Please try again!' });
-    return;
-  }
-  const validPassword = await bcrypt.compare(
-    req.body.password,
-    userData.password
-  );
-  if (!validPassword) {
-    res.status(400).json({ message: 'Login failed. Please try again!' });
-    return;
-  }
-  res.status(200).json({ message: 'You are now logged in!' });
+    if (!userData) {
+      // the error message shouldn't specify if the login failed because of wrong email or password
+      res.status(404).json({ message: 'Login failed. Please try again!' });
+      return;
+    }
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      userData.password
+    );
+    // console.log("Valid password= " + validPassword);
+  
+    if (!validPassword) {
+      res.status(400).json({ message: 'Login failed. Please try again!' });
+      return;
+    }
 
-  const secretKey = process.env.JWT_SECRET_KEY || '';
+    const secretKey = process.env.JWT_SECRET_KEY || '';
 
-  const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
 
-    return res.json({ token });
-
-} catch (err) {
-
+    return res.status(200).json({ message: 'You are now logged in!', token });
+    
+  } catch (err) {
     return res.status(400).json(err);
-
-}
-
+  }
 };
 
 const router = Router();
