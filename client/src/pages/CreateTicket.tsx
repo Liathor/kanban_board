@@ -72,7 +72,7 @@ const CreateTicket = () => {
       <div className='container'>
         <form className='form' onSubmit=
         {handleSubmit}>
-          <h1>Create Ticket</h1>
+          <h1 className="create-ticket-header">Create Ticket</h1>
           <label htmlFor='tName'>Ticket Name</label>
           <textarea 
             id='tName'

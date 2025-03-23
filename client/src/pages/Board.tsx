@@ -49,12 +49,12 @@ const Board = () => {
 
   useEffect(() => {
     const token = auth.getToken();
-    if (!token || auth.isTokenExpired(token)) {
-      // Redirect to login if the token is not present or expired
-      navigate('/login');
-    } else if (loginCheck) {
+    if (loginCheck) {
       fetchTickets();
     }
+    else if (!token || auth.isTokenExpired(token)) {
+      navigate('/');
+    } 
   }, [loginCheck]);
 
   if (error) {

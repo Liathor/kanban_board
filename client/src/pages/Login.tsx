@@ -54,7 +54,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <button type='submit'>Submit Form</button>
-        {errorMessage && <p style={{ color: "red", backgroundColor: "lightgray" }}>{errorMessage}</p>}
+        {errorMessage && <p style={{ color: "red", fontSize: "1.2em" }}>{errorMessage}</p>}
       </form>
     </div>
     

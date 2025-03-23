@@ -24,7 +24,7 @@ input:-moz-placeholder {
 
 a {
   font-weight: 500;
-  color: #000000;
+  color: rgb(0, 0, 0);
   text-decoration: inherit;
 }
 a:hover {
@@ -32,7 +32,7 @@ a:hover {
 }
 
 body {
-  background: #ECF0F1;
+  background: #d4c8c2;
   background-size: cover;
   background-repeat: no-repeat no-repeat;
   background-position: center center;
@@ -87,7 +87,15 @@ tbody tr:nth-child(odd) {
 /* Navbar Content */
 .nav {
   display: flex;
+  justify-content: space-between;
   padding: 1em 2em;
+  align-items: center;
+}
+
+.nav-title {
+  font-size: 2em;
+  font-weight: 900;
+  color: rgb(255, 255, 255);
 }
 
 .nav ul {
@@ -96,22 +104,26 @@ tbody tr:nth-child(odd) {
   flex-direction: row;
 }
 
-.nav-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: larger;
-  font-weight: 900;
+.nav-item {
+  display: block;
+  margin-left: 20px;
+  list-style: none;
+}
+
+.nav-item button {
+  background-color: #6b8963;
+  padding: 0,5em 1.2em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item button:hover {
+  background-color: #535bf2;
 }
 
 .nav-title a {
-  color: #b864c4;
-}
-
-.nav-item {
-  display: block;
-  margin-left: auto;
-  list-style: none;
+  color: inherit;
 }
 
 .nav-link {
@@ -147,15 +159,15 @@ tbody tr:nth-child(odd) {
 }
 
 .todo {
-  background-color: #e9cbec;
+  background-color: #435c3c;
 }
 
 .inprogress {
-  background-color: #b864c4;
+  background-color: #6b8963;
 }
 
 .done {
-  background-color: #732381;
+  background-color: #bdcfb8;
 }
 
 .ticket-card {
@@ -165,9 +177,12 @@ tbody tr:nth-child(odd) {
   margin-bottom: 10px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 0.1em solid black;
+  border: 0em hidden black;
 }
 
+.ticket-user {
+  font-style: italic;
+}
 .container {
   /* margin: auto; */
   width: 100%;
@@ -181,18 +196,27 @@ tbody tr:nth-child(odd) {
 
 
 .form {
-  width: 60%;
-  height: 80%;
-  background-color: #b864c4;
+  width: 70%;
+  height: 40%;
+  background-color: #6b8963;
   margin: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 4px;
+  padding: 1em;
 }
 
-.form > h1, .form > label {
-  color: yellow;
+.form > h1 {
+  color: rgb(108, 42, 9);
+}
+
+.form > label {
+  color: rgb(108, 42, 9);
+  font-size: 1.5em;
+  font-weight: bold;
+
 }
 
 .form > input {
@@ -242,6 +266,9 @@ tbody tr:nth-child(odd) {
   justify-content: center;
 }
 
+.create-ticket-header {
+  text-align: center;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
